@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management System</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Product Management System</h1>
+    <hr>
+    <h2>Save Product</h2>
+
+    <form action="#" th:action="@{/saveProduct}" th:object="${product}" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:if="${#httpServletRequest.requestURI.contains('/showFormForUpdate')}" th:field="*{id}">
+
+        <input type="text" th:field="*{productName}"
+               placeholder="Product Name" class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{price}"
+               placeholder="Product Price" class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{quantityInStore}"
+               placeholder="Quantity in Store" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2 mb-3">Save Product</button>
+    </form>
+
+    <a th:href="@{/}">Go to Product List</a>
+</div>
+
+</body>
+</html>
